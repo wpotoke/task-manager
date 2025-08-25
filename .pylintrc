@@ -1,0 +1,26 @@
+[MASTER]
+ignore=venv
+jobs=1
+load-plugins=pylint_django
+django-settings-module="core.settings"
+persistent=yes
+
+
+[MESSAGES CONTROL]
+disable =
+    missing-docstring,
+    unused-argument,
+    too-few-public-methods,
+    too-many-arguments,
+    too-many-locals,
+    import-outside-toplevel,
+
+[FORMAT]
+max-line-length=110
+
+[DESIGN]
+max-args=6
+max-locals=15
+
+[REPORTS]
+output-format = colorized
