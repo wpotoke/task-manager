@@ -1,5 +1,8 @@
 from uuid import uuid4
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 # Create your models here.
@@ -12,6 +15,12 @@ class Task(models.Model):
 
     uuid = models.UUIDField(
         default=uuid4, editable=False, verbose_name="id задачи", unique=True
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="author",
+        verbose_name="Автор задачи",
     )
     name = models.CharField(max_length=255, verbose_name="Название задачи")
     description = models.TextField(blank=True, null=True, verbose_name="Описание")
