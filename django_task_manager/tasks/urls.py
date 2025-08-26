@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 from tasks.views import TaskAPIView
-from drf_spectacular.views import SpectacularAPIView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path("tasklist/", TaskAPIView.as_view()),
@@ -24,5 +24,10 @@ urlpatterns = [
     path("task/update/<str:uuid>/", TaskAPIView.as_view()),
     path("task/delete/<str:uuid>/", TaskAPIView.as_view()),
     path("task/<str:uuid>/", TaskAPIView.as_view()),
-    path("schema/", SpectacularAPIView.as_view()),
+    path(
+        "schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
 ]
