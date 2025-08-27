@@ -4,6 +4,8 @@ from tasks.models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
     description = serializers.CharField(default="")
+    created = serializers.DateTimeField(read_only=True)
+    updated = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = Task
