@@ -14,20 +14,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-from tasks.views import TaskAPIView
+
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.urls import path
+from tasks.views import TaskListCreateView, TaskDetailView
 
 urlpatterns = [
-    path("tasklist/", TaskAPIView.as_view()),
-    path("task/create/", TaskAPIView.as_view()),
-    path("task/update/<str:uuid>/", TaskAPIView.as_view()),
-    path("task/delete/<str:uuid>/", TaskAPIView.as_view()),
-    path("task/<str:uuid>/", TaskAPIView.as_view()),
+    path("tasks/", TaskListCreateView.as_view(), name="task-list-create"),
+    path("tasks/<uuid:uuid>/", TaskDetailView.as_view(), name="task-detail"),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "schema/swagger-ui/",
+        "docs/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
-    path("schema/", SpectacularAPIView.as_view(), name="schema"),
 ]
