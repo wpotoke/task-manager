@@ -98,10 +98,12 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Task API Project",
-    "DESCRIPTION": "A simple Task Manager",
+    "TITLE": "Task Manager API",
+    "DESCRIPTION": "A simple task management system",
     "VERSION": "1.0.0",
-}  # new, it's metadata with drf_spectacular
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
