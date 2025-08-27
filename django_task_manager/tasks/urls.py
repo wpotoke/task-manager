@@ -24,7 +24,7 @@ urlpatterns = [
     path("tasks/<uuid:uuid>/", TaskDetailView.as_view(), name="task-detail"),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "schema/swagger-ui/",
+        "docs/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
