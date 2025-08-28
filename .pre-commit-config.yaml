@@ -13,10 +13,18 @@ repos:
         
   - repo: local
     hooks:
-      - id: pylint
-        name: pylint
+      - id: pylint-django
+        name: pylint-django
         entry: pylint
         language: system
         types: [python]
-        exclude: .*/migrations/.*
-        args: [--rcfile=.pylintrc]
+        files: ^django_task_manager/
+        args: [--rcfile=django_task_manager/.pylintrc]
+
+      - id: pylint-fastapi
+        name: pylint-fastapi
+        entry: pylint
+        language: system
+        types: [python]
+        files: ^fastapi_task_manager/
+        args: [--rcfile=fastapi_task_manager/.pylintrc]
