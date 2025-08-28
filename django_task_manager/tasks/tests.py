@@ -41,6 +41,8 @@ class TaskModelTest(TestCase):
             status="CRTE",
         )
 
+        time.sleep(1)
+
         _second_task = Task.objects.create(
             author=self.author,
             name="test task2",
@@ -49,14 +51,15 @@ class TaskModelTest(TestCase):
         )
 
         saved_tasks = Task.objects.all()
+
         self.assertEqual(saved_tasks.count(), 2)
 
-        first_saved_task = saved_tasks[0]
+        first_saved_task = saved_tasks[1]
         self.assertEqual(first_saved_task.name, "test task1")
         self.assertEqual(first_saved_task.description, "test task desc1")
         self.assertEqual(first_saved_task.status, "CRTE")
 
-        second_saved_task = saved_tasks[1]
+        second_saved_task = saved_tasks[0]
         self.assertEqual(second_saved_task.name, "test task2")
         self.assertEqual(second_saved_task.description, "test task desc2")
         self.assertEqual(second_saved_task.status, "WORK")
