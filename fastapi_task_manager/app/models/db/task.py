@@ -20,11 +20,12 @@ class TaskStatus(enum.Enum):
 class Task(Base):
     __tablename__ = "task"
 
-    uuid: SQLAlchemyMapped[uuid.UUID] = sqlalchemy_mapped_column(
+    uuid: SQLAlchemyMapped[uuid] = sqlalchemy_mapped_column(
         sqlalchemy.UUID,
         default=uuid.uuid4,
         unique=True,
         nullable=False,
+        primary_key=True,
     )
     name: SQLAlchemyMapped[str] = sqlalchemy_mapped_column(
         sqlalchemy.String(length=255), nullable=False
