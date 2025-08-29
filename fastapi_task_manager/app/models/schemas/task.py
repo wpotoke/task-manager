@@ -1,5 +1,5 @@
 import datetime
-
+import uuid
 from app.models.schemas.base import BaseScheameModel
 from app.models.db.task import TaskStatus
 
@@ -11,7 +11,7 @@ class TaskCreate(BaseScheameModel):
 
 
 class TaskGetDetail(BaseScheameModel):
-    uuid: str
+    uuid: uuid.UUID
 
 
 class TaskUpdate(BaseScheameModel):
@@ -21,13 +21,13 @@ class TaskUpdate(BaseScheameModel):
 
 
 class TaskDelete(BaseScheameModel):
-    uuid: str
+    uuid: uuid.UUID
 
 
 class TaskResponse(BaseScheameModel):
-    uuid: str
+    uuid: uuid.UUID
     name: str
     description: str | None
     status: TaskStatus
-    created_at: datetime
-    updated_at: datetime | None
+    created_at: datetime.datetime
+    updated_at: datetime.datetime | None
