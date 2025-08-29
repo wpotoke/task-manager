@@ -40,7 +40,7 @@ class TaskCRUDRepository(BaseCRUDRepository):
         if not task:
             raise EntityDoesNotExist(f"Task with uuid - {uuid} does not exists")
 
-        return query.scalar()
+        return task
 
     async def update_task_by_uuid(
         self, uuid: uuid.UUID, task_update: TaskUpdate
