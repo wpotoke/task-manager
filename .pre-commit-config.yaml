@@ -19,6 +19,7 @@ repos:
         language: system
         types: [python]
         files: ^django_task_manager/
+        exclude: .*/migrations/.*
         args: [--rcfile=django_task_manager/.pylintrc]
 
       - id: pylint-fastapi
@@ -27,4 +28,5 @@ repos:
         language: system
         types: [python]
         files: ^fastapi_task_manager/
+        exclude: .*/migrations/.*
         args: [--rcfile=fastapi_task_manager/.pylintrc]
