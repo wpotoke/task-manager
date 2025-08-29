@@ -1,7 +1,6 @@
 # pylint: disable=no-member,unexpected-keyword-arg
 import pydantic
 from sqlalchemy.ext.asyncio import (
-    AsyncSession as SQLAlchemyAsyncSession,
     AsyncEngine as SQLAlchemyAsyncEngine,
     create_async_engine as create_sqlalchemy_async_engine,
 )
@@ -13,13 +12,10 @@ from app.config.manager import settings
 class AsyncDatabase:
     def __init__(self):
         self.postgres_uri: pydantic.PostgresDsn = pydantic.PostgresDsn(
-            url=(
-                f"{settings.POSTGRES_SCHEMA}://"
-                f"{settings.POSTGRES_USERNAME}:{settings.POSTGRES_PASSWORD}@"
-                f"{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/"
-                f"{settings.POSTGRES_DB}"
-            ),
-            scheme=settings.POSTGRES_SCHEMA,
+            url=f"{settings.POSTGRES_SCHEMA}://"
+            f"{settings.POSTGRES_USERNAME}:{settings.POSTGRES_PASSWORD}@"
+            f"{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/"
+            f"{settings.POSTGRES_DB}",
         )
         self.async_engine: SQLAlchemyAsyncEngine = create_sqlalchemy_async_engine(
             url=self.set_async_db_url,
@@ -28,9 +24,7 @@ class AsyncDatabase:
             max_overflow=settings.DB_POOL_OVERFLOW,
             poolclass=SQLAlchemyQueuePool,
         )
-        self.async_session: SQLAlchemyAsyncSession = SQLAlchemyAsyncSession(
-            bind=self.async_engine
-        )
+
         self.pool: SQLAlchemyPool = self.async_engine.pool
 
     @property
@@ -41,7 +35,7 @@ class AsyncDatabase:
             `postgresql://` => `postgresql+asyncpg://`
         """
         return (
-            self.postgres_uri.replace("postgresql://", "postgresql+asyncpg://")
+            str(self.postgres_uri).replace("postgresql://", "postgresql+asyncpg://")
             if self.postgres_uri
             else self.postgres_uri
         )
