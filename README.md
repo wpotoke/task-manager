@@ -166,6 +166,7 @@ Bypass password validation and create user anyway? [y/N]: y
 Superuser created successfully.
 ```
 **Потыкать проверить работу**
+
 После данных действие будет доступно два приложения
 
 Djanfo - [127.0.0.1:8000/api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/)
@@ -182,3 +183,16 @@ FastApi
 ```
 docker-compose exec fastapi pytest
 ```
+
+### Coverage
+
+Django
+| FILES | FUNCTIONS | CLASES |
+|-------|-----------|--------|
+| <img width="683" height="765" alt="Снимок экрана 2025-08-31 234330" src="https://github.com/user-attachments/assets/eb3f1c29-5632-4e8f-bb99-a5bea2a59efc" /> | <img width="884" height="907" alt="Снимок экрана 2025-08-31 234447" src="https://github.com/user-attachments/assets/7c10b18a-b49d-4dde-a9f4-534e66225cbe" /> | <img width="764" height="898" alt="Снимок экрана 2025-08-31 234521" src="https://github.com/user-attachments/assets/2bed4b3d-bfd3-4396-b69e-1fb5b89ecfad" /> |
+
+FastApi
+| FILES | FUNCTIONS | CLASES |
+|-------|-----------|--------|
+| <img width="610" height="430" alt="изображение" src="https://github.com/user-attachments/assets/73a3747c-ccc1-4158-a76a-db53abb4387f" /> | <img width="990" height="886" alt="изображение" src="https://github.com/user-attachments/assets/578c376c-8f70-443c-bdfb-9fc7065a3670" /> | <img width="778" height="440" alt="изображение" src="https://github.com/user-attachments/assets/bc93701c-0674-4d51-b603-2af455bf8739" /> |
+
