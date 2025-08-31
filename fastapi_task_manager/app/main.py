@@ -1,7 +1,9 @@
 # pylint:disable=no-member
-import fastapi
 import uvicorn
+import fastapi
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from app.utils.exceptions.database import EntityDoesNotExist
 
 from app.api.endpoints import router as api_router
 from app.config.events import (
@@ -13,6 +15,13 @@ from app.config.manager import settings
 
 def initialize_backend_application() -> fastapi.FastAPI:
     app = fastapi.FastAPI(**settings.set_backend_app_attributes)
+
+    @app.exception_handler(EntityDoesNotExist)
+    async def entity_not_found_exception_handler(request, exc: EntityDoesNotExist):
+        return JSONResponse(
+            status_code=404,
+            content={"detail": str(exc)},
+        )
 
     app.add_middleware(
         CORSMiddleware,
