@@ -12,6 +12,7 @@
 Этот репозиторий содержит два одтельных приложения одно на django, django-rest-framework и другое на fastapi
 
 Django Task Manager - это веб-приложение для управления задачами, разработанное на Django и Django REST Framework. Приложение предоставляет полный цикл CRUD (Create, Read, Update, Delete) операций для управления задачами с системой аутентификации пользователей.
+
 FastAPI Task Manager - это это высокопроизводительный микросервис для управления задачами, построенный на современном асинхронном фреймворке FastAPI. Сервис предоставляет полный цикл CRUD (Create, Read, Update, Delete) управления задачами.
 
 #### Пометка
@@ -48,6 +49,7 @@ Docs
     ├── ci-backend.yaml                 # A CI file for the backend app that consists of `build`, `test`
 django_task_manager/
 ├── core
+    
 ├── tasks
 ├── Docker
 ├── .pylintrc
@@ -114,21 +116,20 @@ cd task_manager
 ````
 **Активируйте виртуальное окружени и установите зависисмости:**
 ```
-python -m venv venv
+python -m venv venv && venv\Scripts\activate
 pip install -r requirements.txt
 ```
-**Создайте файл переменных окружения:**
-.env
+**Создайте файл переменных окружения .env по примеру .env.example, остальное будет доступно из коробки**
 ```
 SECRET_KEY = secret key
 
-# database
-ENGINE = "django.db.backends.postgresql"
 NAME = "NAME_DB"
 USER = "USERNAME"
 PASSWORD = "PASS"
-HOST = "db"
-PORT = "5432"
+
+fastAPI_POSTGRES_DB=db name
+fastAPI_POSTGRES_PASSWORD=password from user
+fastAPI_POSTGRES_USERNAME=username
 
 ```
 **Сгенерируйте SECRET_KEY (если необходимо) и вставьте его в файл .env:**
@@ -136,7 +137,7 @@ PORT = "5432"
 ```bash
 python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
-**Создайте пользователя и базу данных, также передайте права на пользование и укажите кодировку**
+**Создайте пользователя и базу данных, также передайте права на пользование и укажите кодировку(вставьте данные в env)**
 (pqsl)
 ```pqsl
 CREATE USER your_username WITH PASSWORD 'your_password';
@@ -148,12 +149,12 @@ docker-compose up --build
 ```
 **Примените миграции**
 ```
-cd django_task_manager
-docker-compose exec web python manage.py migrate
+docker-compose exec django python manage.py makemigrations
+docker-compose exec django python manage.py migrate
 ```
 **Создайте админа**
 ```
-docker-compose exec web python manage.py createsuperuser
+docker-compose exec django python manage.py createsuperuser
 Username (leave blank to use 'task_manager'): root
 Email address: enter
 Password: root
@@ -165,10 +166,19 @@ Bypass password validation and create user anyway? [y/N]: y
 Superuser created successfully.
 ```
 **Потыкать проверить работу**
+После данных действие будет доступно два приложения
 
-Переходите по адресу 127.0.0.1:8000/api/v1/docs/
+Djanfo - [127.0.0.1:8000/api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/)
+FastAPI - [127.0.0.1:8001/docs](http://127.0.0.1:8000/docs)
 
 ### Тестирование
+
+Django
 ```
-docker-compose exec web python manage.py test
+docker-compose exec django python manage.py test
+```
+
+FastApi
+```
+docker-compose exec fastapi pytest
 ```
