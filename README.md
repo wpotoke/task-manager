@@ -46,13 +46,23 @@ Docs
 ```shell
 .github/
 ├── workflows/
-    ├── ci-backend.yaml                 # A CI file for the backend app that consists of `build`, `test`
+    ├── test.yaml                       # A CI file for the backend app that consists of `test`
 django_task_manager/
 ├── core
-    
+    ├── asgi.py                         # ASGI configuration for asynchronous servers (example: Django Channels)
+    ├── settings.py                     # Root settings: database, applications, middleware, secret
+    ├── urls.py                         # Root urls (connects urls from other applications)
+    ├── wsgi.py                         # WSGI config for sync(ordenary server)
 ├── tasks
-├── Docker
-├── .pylintrc
+    ├── admin.py                        # Register your models(db)
+    ├── apps.py                         # Config this app(connect signals)
+    ├── models.py                       # Implemented modeld(db)
+    ├── serializers.py                  # Data serializer serializes from python objects to json and vice versa
+    ├── tests.py                        # Testing your apps(tasks)
+    ├── urls.py                         # Tasks application url routes
+    ├── views.py                        # request handlers(take data from the database, can do something with it and insert it into the template)
+├── Docker                              # Docker configuration file for backend application FastAPI
+├── .pylintrc                           # Config linter for Django
 fastapi_task_manager/
 ├── app/
     ├── api/
@@ -96,15 +106,15 @@ fastapi_task_manager/
         ├── test_repo.py                # Testing repo (crud) 
         ├── test_schemas.py             # Testing schemas
     ├── conftest.py                     # The fixture codes and other base test codes
-├── Dockerfile                          # Docker configuration file for backend application
-├── .pylintrc
+├── Dockerfile                          # Docker configuration file for backend application FastAPI
+├── .pylintrc                           # Config linter for FastAPI
 README.md                               # Documentation for backend app
 requirements.txt                        # Packages installed for backend app
 .dockerignore                           # A file that list files to be excluded in Docker container
 .gitignore                              # A file that list files to be excluded in GitHub repository
 .pre-commit-config.yaml                 # A file with Python linter hooks to ensure conventional commit when committing
 README.md                               # The main documentation file for this template repository
-docker-compose.yaml                     # The main configuration file for setting up a multi-container Docker
+docker-compose.yaml                     # The main configuration file for setting up a multi-container Docker (Django, FastAPI, PostgreSQL)
 ```
 
 #### Установка
