@@ -1,10 +1,25 @@
 # pylint:disable=redefined-outer-name
+from unittest.mock import AsyncMock
 import asgi_lifespan
 import fastapi
 import httpx
+import pytest
 import pytest_asyncio
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.main import initialize_backend_application
+
+
+@pytest.fixture
+def mock_async_session():
+    """Фикстура мок-асинхронной сессии"""
+    return AsyncMock(spec=AsyncSession)
+
+
+@pytest.fixture
+def sample_task_data():
+    """Фикстура с примером данных задачи"""
+    return {"name": "Test Task", "description": "Test Description", "status": "created"}
 
 
 @pytest_asyncio.fixture(name="backend_test_app")
