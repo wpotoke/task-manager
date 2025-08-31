@@ -25,3 +25,23 @@ jobs:
         python manage.py test
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+    - name: Run test fastAPI
+      run: |
+        cd fastapi_task_manager
+        pytest app/tests/ -v
+      env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          fastAPI_IS_ALLOWED_CREDENTIALS: ${{ secrets.IS_ALLOWED_CREDENTIALS }}
+          fastAPI_BACKEND_SERVER_HOST: ${{ secrets.BACKEND_SERVER_HOST }}
+          fastAPI_BACKEND_SERVER_PORT: ${{ secrets.BACKEND_SERVER_PORT }}
+          fastAPI_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          fastAPI_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          fastAPI_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          fastAPI_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          fastAPI_POSTGRES_USERNAME: ${{ secrets.POSTGRES_USERNAME }}
+          fastAPI_POSTGRES_SCHEMA: ${{ secrets.POSTGRES_SCHEMA }}
+          fastAPI_IS_DB_ECHO_LOG: ${{ secrets.IS_DB_ECHO_LOG }}
+          fastAPI_DB_POOL_OVERFLOW: ${{ secrets.DB_POOL_OVERFLOW }}
+          fastAPI_DB_POOL_SIZE: ${{ secrets.DB_POOL_SIZE }}
+          fastAPI_BACKEND_SERVER_WORKERS: ${{ secrets.BACKEND_SERVER_WORKERS }}
