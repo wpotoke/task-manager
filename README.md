@@ -6,6 +6,7 @@
 ![PostgreSQL](https://img.shields.io/badge/Postgres-16-darkblue?logo=postgresql)
 ![Docker](https://img.shields.io/badge/Docker-blue?logo=docker)
 ![Docker-Compose](https://img.shields.io/badge/DockerCompose-blue?logo=docker)
+![Pydantic](https://img.shields.io/badge/Pydantic-red?logo=Pydantic)
 
 ---
 
