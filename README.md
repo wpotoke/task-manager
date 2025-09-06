@@ -10,7 +10,7 @@
 
 ---
 
-Этот репозиторий содержит два одтельных приложения одно на django, django-rest-framework и другое на fastapi
+Этот репозиторий содержит два отдельных приложения одно на django, django-rest-framework и другое на fastapi
 
 Django Task Manager - это веб-приложение для управления задачами, разработанное на Django и Django REST Framework. Приложение предоставляет полный цикл CRUD (Create, Read, Update, Delete) операций для управления задачами с системой аутентификации пользователей.
 
